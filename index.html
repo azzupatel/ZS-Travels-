@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Z.S Travels – Taxi Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --yellow:#FFD200;
+  --yellow-dark:#E6BC00;
+  --yellow-light:#FFF8CC;
+  --yellow-pale:#FFFBE6;
+  --black:#1A1A1A;
+  --text:#333333;
+  --text-light:#666666;
+  --text-muted:#999999;
+  --bg:#FFFFFF;
+  --bg2:#F8F9FA;
+  --bg3:#F2F4F6;
+  --border:#E8E8E8;
+  --green:#22C55E;
+  --shadow:0 4px 24px rgba(0,0,0,0.08);
+  --shadow-md:0 8px 40px rgba(0,0,0,0.12);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;background:var(--yellow);padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 16px rgba(255,210,0,0.35);}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:42px;height:42px;background:var(--black);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;color:var(--yellow);letter-spacing:-1px;}
+.logo-text{font-family:'Nunito',sans-serif;font-size:1.15rem;font-weight:900;color:var(--black);line-height:1.1;}
+.logo-sub{display:block;font-size:0.6rem;font-weight:600;letter-spacing:2px;color:rgba(0,0,0,0.5);text-transform:uppercase;}
+.nav-links{display:flex;gap:0.2rem;list-style:none;}
+.nav-links a{color:var(--black);text-decoration:none;font-size:0.85rem;font-weight:600;padding:0.5rem 1rem;border-radius:6px;transition:background 0.2s;}
+.nav-links a:hover{background:rgba(0,0,0,0.1);}
+.nav-cta{background:var(--black);color:var(--yellow);padding:0.55rem 1.4rem;border-radius:8px;font-size:0.85rem;font-weight:700;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,0.25);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:2.5px;background:var(--black);border-radius:2px;transition:all 0.3s;}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--yellow);display:flex;align-items:center;padding:5rem 2rem 4rem;position:relative;overflow:hidden;}
+.hero-road{position:absolute;bottom:0;left:0;right:0;height:80px;background:#2C2C2C;clip-path:polygon(0 40%,100% 10%,100% 100%,0 100%);}
+.hero-road::after{content:'';position:absolute;top:50%;left:0;right:0;height:4px;background:repeating-linear-gradient(90deg,#FFD200 0,#FFD200 40px,transparent 40px,transparent 80px);transform:translateY(-50%);}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,0.07) 1.5px,transparent 1.5px);background-size:32px 32px;}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:2;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--black);color:var(--yellow);border-radius:100px;padding:0.4rem 1rem 0.4rem 0.5rem;font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.2rem;}
+.hero-badge-dot{width:24px;height:24px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;}
+h1{font-family:'Nunito',sans-serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:900;color:var(--black);line-height:1.1;margin-bottom:1rem;}
+h1 .underline{position:relative;display:inline-block;}
+h1 .underline::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:5px;background:var(--black);border-radius:2px;}
+.hero-desc{font-size:1rem;color:rgba(0,0,0,0.6);line-height:1.7;margin-bottom:2rem;max-width:440px;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-dark{background:var(--black);color:var(--yellow);padding:0.85rem 1.8rem;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.9rem;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 16px rgba(0,0,0,0.2);display:inline-flex;align-items:center;gap:8px;}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+.btn-white{background:white;color:var(--black);padding:0.85rem 1.8rem;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.9rem;transition:transform 0.2s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 2px 12px rgba(0,0,0,0.12);}
+.btn-white:hover{transform:translateY(-2px);}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.hstat{text-align:center;}
+.hstat-num{font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:var(--black);}
+.hstat-label{font-size:0.72rem;font-weight:600;color:rgba(0,0,0,0.5);text-transform:uppercase;letter-spacing:1px;}
+.hstat-div{width:1px;background:rgba(0,0,0,0.2);align-self:stretch;}
+.car-card{background:var(--bg);border-radius:20px;padding:2rem;box-shadow:var(--shadow-md);position:relative;overflow:hidden;}
+.car-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--yellow);}
+.car-emoji{font-size:96px;display:block;text-align:center;line-height:1;margin-bottom:1rem;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.12));animation:carFloat 3s ease-in-out infinite;}
+@keyframes carFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.car-info{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;}
+.car-pill{background:var(--bg2);border-radius:8px;padding:0.6rem 0.8rem;text-align:center;}
+.car-pill strong{display:block;font-size:1rem;font-weight:800;color:var(--black);}
+.car-pill span{font-size:0.7rem;color:var(--text-muted);font-weight:500;}
+.ftag{position:absolute;background:var(--black);color:var(--yellow);border-radius:10px;padding:0.5rem 0.9rem;font-size:0.75rem;font-weight:700;animation:tagFloat 4s ease-in-out infinite;}
+.ftag1{top:-10px;right:20px;}
+.ftag2{bottom:20px;left:-15px;animation-delay:1.5s;}
+@keyframes tagFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+
+/* RIBBON */
+.ribbon{background:var(--black);padding:1rem 2rem;overflow:hidden;}
+.ribbon-track{display:flex;gap:3rem;animation:marquee 22s linear infinite;white-space:nowrap;}
+.ritem{display:flex;align-items:center;gap:8px;color:var(--yellow);font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;flex-shrink:0;}
+.rdot{width:6px;height:6px;background:var(--yellow);border-radius:50%;flex-shrink:0;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* SECTIONS */
+section{padding:5rem 2rem;}
+.container{max-width:1100px;margin:0 auto;}
+.eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--yellow-pale);border:1.5px solid var(--yellow);border-radius:100px;padding:0.3rem 0.9rem;font-size:0.72rem;font-weight:700;color:var(--black);letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;}
+.eyebrow::before{content:'';width:8px;height:8px;background:var(--yellow);border-radius:50%;}
+.sec-title{font-family:'Nunito',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;color:var(--black);margin-bottom:0.8rem;line-height:1.2;}
+.sec-sub{color:var(--text-light);font-size:0.95rem;max-width:480px;line-height:1.7;}
+
+/* SERVICES */
+#services{background:var(--bg2);}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:3rem;}
+.svc-card{background:var(--bg);border-radius:16px;padding:1.8rem;border:1.5px solid var(--border);transition:all 0.3s;}
+.svc-card:hover{border-color:var(--yellow);transform:translateY(-4px);box-shadow:0 8px 32px rgba(255,210,0,0.2);}
+.svc-icon{width:56px;height:56px;background:var(--yellow-pale);border:2px solid var(--yellow);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:1.2rem;}
+.svc-card h3{font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:800;color:var(--black);margin-bottom:0.5rem;}
+.svc-card p{color:var(--text-light);font-size:0.85rem;line-height:1.6;}
+.svc-link{display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:0.78rem;font-weight:700;color:var(--black);text-decoration:none;transition:gap 0.2s;}
+.svc-card:hover .svc-link{gap:9px;}
+
+/* HOW IT WORKS */
+#how{background:var(--bg);}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:3rem;position:relative;}
+.steps::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:2px;background:repeating-linear-gradient(90deg,var(--yellow) 0,var(--yellow) 12px,transparent 12px,transparent 24px);z-index:0;}
+.step{background:var(--bg);border-radius:16px;padding:1.8rem 1.5rem;text-align:center;position:relative;z-index:1;border:1.5px solid var(--border);}
+.step-n{width:52px;height:52px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:900;color:var(--black);margin:0 auto 1.2rem;box-shadow:0 4px 12px rgba(255,210,0,0.4);}
+.step h4{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--black);margin-bottom:0.4rem;}
+.step p{color:var(--text-light);font-size:0.82rem;line-height:1.6;}
+
+/* BOOKING */
+#booking{background:var(--yellow-pale);}
+.bwrap{display:grid;grid-template-columns:1fr 1.2fr;gap:3.5rem;align-items:start;margin-top:3rem;}
+.bleft p{color:var(--text-light);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem;}
+.flist{list-style:none;display:flex;flex-direction:column;gap:0.7rem;}
+.flist li{display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text);font-weight:500;}
+.fcheck{width:22px;height:22px;background:var(--yellow);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;font-weight:800;}
+.chips{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1.8rem;}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--black);color:var(--yellow);border-radius:100px;padding:0.5rem 1rem;font-size:0.8rem;font-weight:700;text-decoration:none;transition:transform 0.2s;}
+.chip:hover{transform:scale(1.04);}
+.bform{background:var(--bg);border-radius:20px;padding:2rem;box-shadow:var(--shadow-md);border:1.5px solid rgba(255,210,0,0.3);}
+.fhead{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1.5px solid var(--border);}
+.fhead-icon{width:40px;height:40px;background:var(--yellow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.fhead h3{font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:900;color:var(--black);}
+.fhead p{font-size:0.75rem;color:var(--text-muted);}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{margin-bottom:1rem;}
+.fg label{display:block;font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-light);margin-bottom:0.4rem;}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:0.7rem 1rem;color:var(--text);font-family:'Poppins',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(255,210,0,0.15);}
+.fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+.fg textarea{resize:vertical;min-height:80px;}
+.wa-btn{width:100%;background:#25D366;color:#fff;border:none;padding:1rem;border-radius:12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:0.5rem;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 16px rgba(37,211,102,0.3);}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.4);}
+
+/* WHY */
+#why{background:var(--black);padding:5rem 2rem;}
+#why .sec-title{color:#fff;}
+#why .eyebrow{background:rgba(255,210,0,0.12);border-color:rgba(255,210,0,0.35);color:var(--yellow);}
+#why .eyebrow::before{background:var(--yellow);}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem;}
+.why-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:1.8rem;transition:all 0.3s;}
+.why-card:hover{background:rgba(255,210,0,0.08);border-color:rgba(255,210,0,0.3);}
+.why-n{font-family:'Nunito',sans-serif;font-size:2.5rem;font-weight:900;color:var(--yellow);opacity:0.22;line-height:1;margin-bottom:0.5rem;}
+.why-card h4{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:0.5rem;}
+.why-card p{color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.6;}
+
+/* FLEET */
+#fleet{background:var(--bg2);}
+.fleet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:3rem;}
+.fleet-card{background:var(--bg);border-radius:16px;overflow:hidden;border:1.5px solid var(--border);transition:all 0.3s;}
+.fleet-card:hover{border-color:var(--yellow);box-shadow:0 8px 32px rgba(255,210,0,0.2);transform:translateY(-4px);}
+.fimg{height:150px;background:var(--yellow-pale);display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;}
+.fimg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--yellow);}
+.fbody{padding:1.3rem;}
+.fbody h4{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:var(--black);margin-bottom:0.3rem;}
+.fbody p{color:var(--text-light);font-size:0.82rem;margin-bottom:0.8rem;}
+.ftags{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.ftag-badge{background:var(--yellow-pale);border:1px solid var(--yellow);color:var(--black);font-size:0.68rem;font-weight:700;padding:3px 9px;border-radius:6px;}
+
+/* CONTACT */
+#contact{background:var(--bg);}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;}
+.citems{display:flex;flex-direction:column;gap:1.2rem;}
+.citem{display:flex;align-items:flex-start;gap:1rem;background:var(--bg2);border-radius:14px;padding:1.2rem 1.4rem;border:1.5px solid var(--border);}
+.cicon{width:44px;height:44px;background:var(--yellow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.citem h5{font-size:0.78rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.citem a,.citem p{color:var(--black);font-size:0.92rem;font-weight:600;text-decoration:none;}
+.citem a:hover{color:var(--yellow-dark);}
+.mapbox{background:var(--yellow-pale);border-radius:16px;border:1.5px solid var(--yellow);min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem;text-align:center;}
+.mapbox .micon{font-size:3.5rem;}
+.mapbox h4{font-family:'Nunito',sans-serif;font-weight:900;color:var(--black);font-size:1.1rem;}
+.mapbox p{color:var(--text-light);font-size:0.85rem;}
+.mapbox a{background:var(--black);color:var(--yellow);border-radius:8px;padding:0.6rem 1.4rem;font-size:0.82rem;font-weight:700;text-decoration:none;transition:transform 0.2s;}
+.mapbox a:hover{transform:scale(1.04);}
+
+/* FOOTER */
+footer{background:var(--black);padding:2rem;}
+.footer-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.fcopy{color:rgba(255,255,255,0.4);font-size:0.8rem;}
+.fbrand{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;color:var(--yellow);}
+.flinks{display:flex;gap:1.5rem;}
+.flinks a{color:rgba(255,255,255,0.4);font-size:0.8rem;text-decoration:none;transition:color 0.2s;}
+.flinks a:hover{color:var(--yellow);}
+
+/* FLOATING WA */
+.wa-float{position:fixed;bottom:1.8rem;right:1.8rem;z-index:998;background:#25D366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.5);transition:transform 0.3s;}
+.wa-float:hover{transform:scale(1.1);}
+.wa-float svg{width:30px;height:30px;fill:#fff;}
+
+/* MOBILE */
+@media(max-width:800px){
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:0.5rem;box-shadow:var(--shadow-md);}
+  .nav-links.open a{padding:0.7rem;border-radius:8px;font-size:1rem;}
+  .hero-inner{grid-template-columns:1fr;}
+  .car-card{display:none;}
+  .bwrap,.cgrid{grid-template-columns:1fr;}
+  .frow{grid-template-columns:1fr;}
+  .steps::before{display:none;}
+}
+
+/* FADE IN */
+.fade-up{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.fade-up.visible{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">ZS</div>
+    <div class="logo-text">Z.S Travels<span class="logo-sub">Taxi Services</span></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#fleet">Fleet</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">Book a Ride</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-road"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><div class="hero-badge-dot">✓</div>Available 24/7</div>
+      <h1>Your Ride,<br>Any Time,<br><span class="underline">Any Where.</span></h1>
+      <p class="hero-desc">Safe, affordable & comfortable taxi services for city rides, outstation trips, and airport transfers. Book in seconds via WhatsApp.</p>
+      <div class="hero-btns">
+        <a href="#booking" class="btn-dark">🚖 Book a Ride</a>
+        <a href="tel:+91XXXXXXXXXX" class="btn-white">📞 Call Now</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-num">500+</div><div class="hstat-label">Happy Riders</div></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><div class="hstat-num">24/7</div><div class="hstat-label">Available</div></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><div class="hstat-num">100%</div><div class="hstat-label">Safe Rides</div></div>
+      </div>
+    </div>
+    <div style="position:relative;">
+      <div class="ftag ftag1">⭐ Trusted Service</div>
+      <img src="taxi-removebg-preview.png">
+    </div>
+  </div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-track">
+    <div class="ritem"><span class="rdot"></span>City Rides</div>
+    <div class="ritem"><span class="rdot"></span>Outstation Trips</div>
+    <div class="ritem"><span class="rdot"></span>Airport Transfers</div>
+    <div class="ritem"><span class="rdot"></span>Package Tours</div>
+    <div class="ritem"><span class="rdot"></span>24/7 Service</div>
+    <div class="ritem"><span class="rdot"></span>AC Vehicles</div>
+    <div class="ritem"><span class="rdot"></span>Verified Drivers</div>
+    <div class="ritem"><span class="rdot"></span>Fixed Fares</div>
+    <div class="ritem"><span class="rdot"></span>City Rides</div>
+    <div class="ritem"><span class="rdot"></span>Outstation Trips</div>
+    <div class="ritem"><span class="rdot"></span>Airport Transfers</div>
+    <div class="ritem"><span class="rdot"></span>Package Tours</div>
+    <div class="ritem"><span class="rdot"></span>24/7 Service</div>
+    <div class="ritem"><span class="rdot"></span>AC Vehicles</div>
+    <div class="ritem"><span class="rdot"></span>Verified Drivers</div>
+    <div class="ritem"><span class="rdot"></span>Fixed Fares</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="fade-up">
+      <div class="eyebrow">What We Offer</div>
+      <h2 class="sec-title">Our Services</h2>
+      <p class="sec-sub">From quick city rides to long outstation journeys — we've got you covered every mile of the way.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card fade-up">
+        <div class="svc-icon">🏙️</div>
+        <h3>Local City Rides</h3>
+        <p>Fast, reliable taxi service within the city. Whether it's work, errands, or a night out — we get you there on time.</p>
+        <a href="#booking" class="svc-link">Book Now →</a>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon">🛣️</div>
+        <h3>Outstation Trips</h3>
+        <p>Comfortable long-distance travel to nearby cities. Professional drivers, clean cars, best fares — no surprises.</p>
+        <a href="#booking" class="svc-link">Book Now →</a>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon">✈️</div>
+        <h3>Airport Transfers</h3>
+        <p>Timely pickup and drop to the airport. We track your flight to ensure you never miss it — stress-free travel.</p>
+        <a href="#booking" class="svc-link">Book Now →</a>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon">📦</div>
+        <h3>Package Tours</h3>
+        <p>Custom tour packages for pilgrimages, family outings, or corporate trips. Tell us your plan, we handle the rest.</p>
+        <a href="#booking" class="svc-link">Book Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <div class="eyebrow">Simple Process</div>
+      <h2 class="sec-title">Book in 3 Easy Steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-n">1</div>
+        <h4>Fill the Form</h4>
+        <p>Enter your pickup, drop location, date, time and the type of service you need.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-n">2</div>
+        <h4>Send on WhatsApp</h4>
+        <p>Tap "Send Booking" — your details go directly to us on WhatsApp instantly.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-n">3</div>
+        <h4>Ride Confirmed!</h4>
+        <p>We confirm your booking and a verified driver arrives right at your door.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="container">
+    <div class="bwrap">
+      <div class="fade-up">
+        <div class="eyebrow">Reserve Your Seat</div>
+        <h2 class="sec-title">Book a Ride Now</h2>
+        <p class="bleft p">Fill the form and your booking lands on our WhatsApp instantly — no app needed, no account required.</p>
+        <ul class="flist">
+          <li><span class="fcheck">✓</span>Instant WhatsApp confirmation</li>
+          <li><span class="fcheck">✓</span>Clean, sanitized AC vehicles</li>
+          <li><span class="fcheck">✓</span>Experienced & verified drivers</li>
+          <li><span class="fcheck">✓</span>Fixed fares — zero hidden charges</li>
+          <li><span class="fcheck">✓</span>Available 24 hours, 7 days a week</li>
+          <li><span class="fcheck">✓</span>Sedan, SUV & tempo options</li>
+        </ul>
+        <div class="chips">
+          <a href="tel:+919737886769" class="chip">📞 +91 9737886769</a>
+          <a href="https://wa.me/919737886769" target="_blank" class="chip">💬 WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="bform fade-up">
+        <div class="fhead">
+          <div class="fhead-icon">🚖</div>
+          <div><h3>Ride Booking Form</h3><p>We'll confirm on WhatsApp</p></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Your Name</label><input type="text" id="fname" placeholder="Full name"/></div>
+          <div class="fg"><label>Phone Number</label><input type="tel" id="fphone" placeholder="+91 97378 86769"/></div>
+        </div>
+        <div class="fg">
+          <label>Service Type</label>
+          <select id="fservice">
+            <option value="">Select a service</option>
+            <option>Local City Ride</option>
+            <option>Outstation Trip</option>
+            <option>Airport Transfer</option>
+            <option>Package Tour</option>
+          </select>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Pickup Location</label><input type="text" id="fpickup" placeholder="Your location"/></div>
+          <div class="fg"><label>Drop Location</label><input type="text" id="fdrop" placeholder="Destination"/></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Travel Date</label><input type="date" id="fdate"/></div>
+          <div class="fg"><label>Pickup Time</label><input type="time" id="ftime"/></div>
+        </div>
+        <div class="fg"><label>Notes (Optional)</label><textarea id="fnotes" placeholder="No. of passengers, luggage, special requests..."></textarea></div>
+        <button class="wa-btn" onclick="sendToWhatsApp()">
+          <svg style="width:22px;height:22px;fill:#fff;flex-shrink:0;" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Send Booking on WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <div class="fade-up">
+      <div class="eyebrow">Why Choose Us</div>
+      <h2 class="sec-title">The Z.S Travels Difference</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-up"><div class="why-n">01</div><h4>Always On Time</h4><p>We value your schedule. Our drivers are punctual — every single ride, guaranteed.</p></div>
+      <div class="why-card fade-up"><div class="why-n">02</div><h4>Verified Drivers</h4><p>All drivers are background-checked, licensed, and professionally trained for safety.</p></div>
+      <div class="why-card fade-up"><div class="why-n">03</div><h4>Fixed Pricing</h4><p>What we quote is what you pay. No hidden charges, no surge pricing — ever.</p></div>
+      <div class="why-card fade-up"><div class="why-n">04</div><h4>Round-the-Clock</h4><p>Early flights or late-night returns — we're always just a WhatsApp message away.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section id="fleet">
+  <div class="container">
+    <div class="fade-up">
+      <div class="eyebrow">Our Vehicles</div>
+      <h2 class="sec-title">Choose Your Ride</h2>
+      <p class="sec-sub">Well-maintained, clean, and comfortable vehicles for every type of journey and group size.</p>
+    </div>
+    <div class="fleet-grid">
+      <div class="fleet-card fade-up">
+        <div class="fimg">🚗</div>
+        <div class="fbody"><h4>Swift Dezire</h4><p>Comfortable 4-seater ideal for city rides & short outstation trips</p><div class="ftags"><span class="ftag-badge">4 Passengers</span><span class="ftag-badge">AC</span></div></div>
+      </div>
+      <div class="fleet-card fade-up">
+        <div class="fimg">🚙</div>
+        <div class="fbody"><h4>Innova</h4><p>Spacious & powerful, ideal for outstation & family journeys</p><div class="ftags"><span class="ftag-badge">6 Passengers</span><span class="ftag-badge">AC</span></div></div>
+      </div>
+      <div class="fleet-card fade-up">
+        <div class="fimg">🚌</div>
+        <div class="fbody"><h4>Traveller</h4><p>Perfect for group tours, pilgrimages & family outings</p><div class="ftags"><span class="ftag-badge">12 Passengers</span><span class="ftag-badge">AC</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="fade-up">
+      <div class="eyebrow">Get in Touch</div>
+      <h2 class="sec-title">Contact Us</h2>
+    </div>
+    <div class="cgrid fade-up">
+      <div class="citems">
+        <div class="citem"><div class="cicon">📞</div><div><h5>Phone / WhatsApp</h5><a href="tel:+919737886769">+91 9737886769</a></div></div>
+        <div class="citem"><div class="cicon">📍</div><div><h5>Location</h5><p>Bharuch, Gujarat, India</p></div></div>
+        <div class="citem"><div class="cicon">🕐</div><div><h5>Hours</h5><p>24 Hours / 7 Days a Week</p></div></div>
+        <div class="citem"><div class="cicon">✉️</div><div><h5>Email</h5><a href="mailto:info@zstravels.in">info@zstravels.in</a></div></div>
+      </div>
+      <div class="mapbox">
+        <div class="micon">📍</div>
+        <h4>Bharuch, Gujarat</h4>
+        <p>Serving Bharuch & surrounding areas — Surat, Vadodara, Ankleshwar & more</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3706.932483426285!2d72.96276499999999!3d21.7053464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be027acba66eab7%3A0x295b06d587461315!2sZ.S%20TRAVELS%20TAXI%20SERVICE!5e0!3m2!1sen!2sin!4v1776392133610!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://maps.app.goo.gl/MwXuFBnL4U4vANch9">Open in Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-in">
+    <div>
+      <div class="fbrand">Z.S Travels 🚕</div>
+      <p class="fcopy" style="margin-top:4px;">© 2025 Z.S Travels Taxi Services. All rights reserved.</p>
+    </div>
+    <div class="flinks">
+      <a href="#services">Services</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#booking">Book Now</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/919737886769" target="_blank" class="wa-float" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+function sendToWhatsApp(){
+  const name=document.getElementById('fname').value.trim();
+  const phone=document.getElementById('fphone').value.trim();
+  const service=document.getElementById('fservice').value;
+  const pickup=document.getElementById('fpickup').value.trim();
+  const drop=document.getElementById('fdrop').value.trim();
+  const date=document.getElementById('fdate').value;
+  const time=document.getElementById('ftime').value;
+  const notes=document.getElementById('fnotes').value.trim();
+  if(!name||!phone||!service||!pickup||!drop||!date){alert('Please fill in all required fields.');return;}
+  const msg=`🚖 *New Booking – Z.S Travels*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n🚘 *Service:* ${service}\n📍 *Pickup:* ${pickup}\n🏁 *Drop:* ${drop}\n📅 *Date:* ${date}\n⏰ *Time:* ${time||'Not specified'}\n📝 *Notes:* ${notes||'None'}\n\n_Booked via zstravels.in_`;
+  window.open(`https://wa.me/919737886769?text=${encodeURIComponent(msg)}`,'_blank');
+}
+</script>
+</body>
+</html>
